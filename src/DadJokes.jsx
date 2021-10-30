@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DadJoke from './DadJoke';
 import getRandPage from './utilities/getRandPage';
+import './DadJokes.css';
 
 const BASE_URL = 'https://icanhazdadjoke.com/search';
 
@@ -64,8 +65,10 @@ class DadJokes extends Component {
     });
     return (
       <div>
-        {dadJokes}
-        <button onClick={this.getJokes}>New Jokes!</button>
+        <div>{dadJokes}</div>
+        <button class="Dad-jokes-button" onClick={this.getJokes}>
+          New Jokes!
+        </button>
       </div>
     );
   }
