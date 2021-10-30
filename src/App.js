@@ -1,13 +1,13 @@
-import DadJoke from './DadJoke';
+import React from 'react';
+import DadJokes from './DadJokes';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <DadJoke />
+      <DadJokes />
     </div>
   );
-  //https://icanhazdadjoke.com/search?limit=10 <- 10 dad jokes fetch
 }
 
 export default App;
