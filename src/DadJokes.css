@@ -1,6 +1,43 @@
+/* .Dad-jokes-app-container {
+  display: flex;
+  flex-direction: row-reverse;
+} */
+
+.Dad-jokes-button-area {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  position: absolute;
+  background-color: slateblue;
+  top: -35px;
+  left: -250px;
+  width: 250px;
+  height: 724px;
+  box-shadow: 1px 1px 7px;
+}
+
+.Dad-jokes-button-area > * {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*Going to need to use div in order to create circle then z-index it under the emoji to make it look circular border*/
+
+.Dad-jokes-button-area-emoji {
+  border: 2px solid black;
+  height: 150px;
+  width: 150px;
+}
+
 .Dad-jokes-button {
   background-color: rgb(221, 30, 125);
   color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 1em;
+  box-shadow: 1px 1px 10px black;
+  width: 130px;
+  height: 40px;
 }
 
 .Dad-jokes-scrolling {
