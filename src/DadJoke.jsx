@@ -2,12 +2,20 @@ import React, { Component } from 'react';
 import './DadJoke.css';
 
 class DadJoke extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  handleChangeRating() {
+    this.props.changeRating(this.props.id);
+  }
+
   render() {
     return (
       <div className="Dad-joke">
         <div className="Dad-joke-rating">
           <button>⬆</button>
-          <div>{this.props.rating}</div>
+          <div>{this.props.handleChangeRating}</div>
           <button>⬇</button>
         </div>
 
