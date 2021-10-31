@@ -109,11 +109,19 @@ class DadJokes extends Component {
     });
 
     return (
-      <div>
+      <div className="Dad-jokes-app-container">
         <div className="Dad-jokes-scrolling">{dadJokes}</div>
-        <button className="Dad-jokes-button" onClick={this.getJokes}>
-          New Jokes!
-        </button>
+        <div className="Dad-jokes-button-area">
+          <h1>Dad Jokes</h1>
+          <img
+            className="Dad-jokes-button-area-emoji"
+            src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/282/face-with-tears-of-joy_1f602.png"
+            alt="joy-emoji"
+          />
+          <button className="Dad-jokes-button" onClick={this.getJokes}>
+            New Jokes!
+          </button>
+        </div>
       </div>
     );
   }
