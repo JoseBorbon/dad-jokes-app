@@ -1,11 +1,11 @@
-.Dad-joke {
+.Dad-joke-container {
   display: flex;
   column-gap: 20px;
   justify-content: space-around;
   border-bottom: 1px solid black;
 }
 
-.Dad-joke > :nth-child(2) {
+.Dad-joke-container > :nth-child(2) {
   align-self: left !important;
   width: 70%;
   text-align: left;
@@ -29,12 +29,20 @@
   margin-bottom: auto;
 }
 
-.Dad-joke-rating > :nth-child(2) {
-  color: green;
+.Dad-joke-rating-circle {
   font-size: 16px;
-  border: 2px solid black;
+  border: 2px solid red;
   border-radius: 50%;
   width: 20px;
   height: 20px;
   padding: 5px;
+  box-shadow: 0px 5px 15px;
+}
+
+.Dad-joke-great {
+  border: 2px solid green;
+}
+
+.Dad-joke-okay {
+  border: 2px solid gold;
 }
