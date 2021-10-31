@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DadJoke from './DadJoke';
 import getRandPage from './utilities/getRandPage';
+import sortList from './utilities/sortList';
 import './DadJokes.css';
 
 const BASE_URL = 'https://icanhazdadjoke.com/search';
@@ -56,12 +57,13 @@ class DadJokes extends Component {
           uniquePages: st.uniquePages.add(randPage),
         };
       });
+
+      this.setState(sortList);
     } catch (err) {
       console.error(err);
     }
   }
 
-  //check this later and check if increase and decrease works
   changeRating(id, incOrDecBy1) {
     this.state.rankings.map((joke, idx) => {
       if (joke.id === id) {
@@ -70,22 +72,17 @@ class DadJokes extends Component {
             rankings: [
               ...st.rankings.slice(0, idx),
               { ...joke, rating: joke.rating + incOrDecBy1 },
-              [...st.rankings.slice(idx + 1)],
+              ...st.rankings.slice(idx + 1),
             ],
           };
         });
+        this.setState(sortList);
       }
     });
   }
 
   render() {
-    //sort in descending order based on rating fix later after searching sort method
-    let dadJokes = this.state.rankings.sort(
-      ({ rating: a }, { rating: b }) => b - a
-    );
-    //^--- DONT FORGET TO SET STATE :)
-    this.state.rankings.map;
-    dadJokes = this.state.rankings.map(({ joke, id, rating }) => {
+    const dadJokes = this.state.rankings.map(({ joke, id, rating }) => {
       return (
         <DadJoke
           key={id}
@@ -99,7 +96,7 @@ class DadJokes extends Component {
 
     return (
       <div>
-        <div>{dadJokes}</div>
+        <div className="Dad-jokes-scrolling">{dadJokes}</div>
         <button className="Dad-jokes-button" onClick={this.getJokes}>
           New Jokes!
         </button>
