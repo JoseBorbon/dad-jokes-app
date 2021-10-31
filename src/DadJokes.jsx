@@ -3,6 +3,7 @@ import axios from 'axios';
 import DadJoke from './DadJoke';
 import getRandPage from './utilities/getRandPage';
 import sortList from './utilities/sortList';
+import emojis from './data/emojis';
 import './DadJokes.css';
 
 const BASE_URL = 'https://icanhazdadjoke.com/search';
@@ -83,12 +84,25 @@ class DadJokes extends Component {
 
   render() {
     const dadJokes = this.state.rankings.map(({ joke, id, rating }) => {
+      const emojiLink =
+        rating >= 12
+          ? emojis[0] //rofl
+          : rating >= 10
+          ? emojis[1] //grin squint face
+          : rating >= 8
+          ? emojis[2] //grin smile
+          : rating >= 4
+          ? emojis[3] //slight smile
+          : rating >= 0
+          ? emojis[4] //confused
+          : emojis[5]; //pouting
       return (
         <DadJoke
           key={id}
           id={id}
-          joke={joke}
           rating={rating}
+          joke={joke}
+          emojiLink={emojiLink}
           changeRating={this.changeRating}
         />
       );
