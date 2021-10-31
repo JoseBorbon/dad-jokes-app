@@ -8,15 +8,22 @@ class DadJoke extends Component {
   }
 
   render() {
+    const { joke, rating } = this.props;
     return (
-      <div className="Dad-joke">
+      <div className="Dad-joke-container">
         <div className="Dad-joke-rating">
           <button onClick={() => this.handleChangeRating(+1)}>⬆</button>
-          <div>{this.props.rating}</div>
+          <div
+            className={`Dad-joke-rating-circle ${
+              rating >= 8 ? 'Dad-joke-great' : rating > 3 ? 'Dad-joke-okay' : ''
+            }`}
+          >
+            {rating}
+          </div>
           <button onClick={() => this.handleChangeRating(-1)}>⬇</button>
         </div>
 
-        <div>{this.props.joke}</div>
+        <div>{joke}</div>
         <img
           className="Dad-joke-emoji"
           src="https://www.citypng.com/public/uploads/preview/smiling-face-emoji-emoticon-eye-heart-red-love-11583591506qpben5gjej.png"
