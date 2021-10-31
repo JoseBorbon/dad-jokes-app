@@ -11,6 +11,7 @@ class DadJokes extends Component {
     super(props);
     this.state = { rankings: [], uniquePages: new Set([1]) };
     this.getJokes = this.getJokes.bind(this);
+    this.changeRating = this.changeRating.bind(this);
   }
 
   async componentDidMount() {
@@ -59,14 +60,47 @@ class DadJokes extends Component {
       console.error(err);
     }
   }
-  render() {
-    const dadJokes = this.state.rankings.map(({ joke, id, rating }) => {
-      return <DadJoke key={id} id={id} joke={joke} rating={rating} />;
+
+  //check this later and check if increase and decrease works
+  changeRating(id, incOrDecBy1) {
+    this.state.rankings.map((joke, idx) => {
+      if (joke.id === id) {
+        this.setState((st) => {
+          return {
+            rankings: [
+              ...st.rankings.slice(0, idx),
+              { ...joke, rating: joke.rating + incOrDecBy1 },
+              [...st.rankings.slice(idx + 1)],
+            ],
+          };
+        });
+      }
     });
+  }
+
+  render() {
+    //sort in descending order based on rating fix later after searching sort method
+    let dadJokes = this.state.rankings.sort(
+      ({ rating: a }, { rating: b }) => b - a
+    );
+    //^--- DONT FORGET TO SET STATE :)
+    this.state.rankings.map;
+    dadJokes = this.state.rankings.map(({ joke, id, rating }) => {
+      return (
+        <DadJoke
+          key={id}
+          id={id}
+          joke={joke}
+          rating={rating}
+          changeRating={this.changeRating}
+        />
+      );
+    });
+
     return (
       <div>
         <div>{dadJokes}</div>
-        <button class="Dad-jokes-button" onClick={this.getJokes}>
+        <button className="Dad-jokes-button" onClick={this.getJokes}>
           New Jokes!
         </button>
       </div>
