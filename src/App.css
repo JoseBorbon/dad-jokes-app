@@ -1,5 +1,6 @@
 body {
-  background-color: rgb(221, 30, 125);
+  height: 947px;
+  background: linear-gradient(to top left, rgb(221, 30, 125) 15%, cyan 110%);
 }
 
 .Dad-jokes-container {
