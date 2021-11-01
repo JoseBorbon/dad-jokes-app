@@ -23,6 +23,10 @@
   font-size: 1.3em;
 }
 
+.Dad-joke-button:hover {
+  cursor: pointer;
+}
+
 .Dad-joke-emoji {
   margin-top: 10px;
   width: 55px;
