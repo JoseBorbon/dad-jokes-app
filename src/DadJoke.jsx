@@ -9,14 +9,24 @@ class DadJoke extends Component {
   render() {
     const { joke, emojiLink, rating } = this.props;
     const circleRating = `Dad-joke-rating-circle ${
-      rating >= 8 ? 'Dad-joke-great' : rating > 3 ? 'Dad-joke-okay' : ''
+      rating >= 9 ? 'Dad-joke-great' : rating >= 3 ? 'Dad-joke-okay' : ''
     }`;
     return (
       <div className="Dad-joke-container">
         <div className="Dad-joke-rating">
-          <button onClick={() => this.handleChangeRating(+1)}>⬆</button>
+          <div className="Dad-joke-button">
+            <i
+              class="fas fa-arrow-up"
+              onClick={() => this.handleChangeRating(+1)}
+            ></i>
+          </div>
           <div className={circleRating}>{rating}</div>
-          <button onClick={() => this.handleChangeRating(-1)}>⬇</button>
+          <div className="Dad-joke-button">
+            <i
+              class="fas fa-arrow-down"
+              onClick={() => this.handleChangeRating(-1)}
+            ></i>
+          </div>
         </div>
         <div>{joke}</div>
         <img className="Dad-joke-emoji" src={emojiLink} />
