@@ -1,3 +1,18 @@
+.Dad-jokes-loading {
+  position: relative;
+  display: inline-block;
+  visibility: visible;
+  animation-name: spin;
+  animation-duration: 3000ms;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  top: 9em;
+}
+
+.Dad-jokes-load-hide {
+  display: none;
+}
+
 .Dad-jokes-button-area {
   display: flex;
   flex-direction: column;
@@ -76,6 +91,19 @@
 .Dad-jokes-scrolling {
   overflow-y: scroll;
   height: 650px;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes shake {
