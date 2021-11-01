@@ -17,6 +17,12 @@
   border: 2px solid red;
 }
 
+.Dad-joke-button {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 1.3em;
+}
+
 .Dad-joke-emoji {
   margin-top: 10px;
   width: 55px;
