@@ -14,6 +14,7 @@ class DadJokes extends Component {
     this.state = {
       rankings: JSON.parse(localStorage.getItem('dad-joke-rankings')) || [],
       uniquePages: new Set([1]),
+      isLoading: false,
     };
     this.getJokes = this.getJokes.bind(this);
     this.changeRating = this.changeRating.bind(this);
@@ -65,8 +66,13 @@ class DadJokes extends Component {
             }),
           ],
           uniquePages: st.uniquePages.add(randPage),
+          isLoading: true,
         };
       });
+
+      setTimeout(() => {
+        this.setState({ isLoading: false });
+      }, 3000);
 
       localStorage.setItem(
         'dad-joke-rankings',
@@ -123,7 +129,18 @@ class DadJokes extends Component {
     });
 
     return (
-      <div className="Dad-jokes-app-container">
+      <div
+        className={`Dad-jokes-app-container ${
+          this.state.isLoading ? 'hide' : ''
+        }`}
+      >
+        <h1
+          className={`Dad-jokes-loading ${
+            this.state.isLoading ? '' : 'Dad-jokes-load-hide'
+          }`}
+        >
+          Loading...
+        </h1>
         <div className="Dad-jokes-scrolling">{dadJokes}</div>
         <div className="Dad-jokes-button-area">
           <div className="Dad-jokes-title">
