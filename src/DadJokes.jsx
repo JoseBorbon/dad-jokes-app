@@ -11,12 +11,16 @@ const BASE_URL = 'https://icanhazdadjoke.com/search';
 class DadJokes extends Component {
   constructor(props) {
     super(props);
-    this.state = { rankings: [], uniquePages: new Set([1]) };
+    this.state = {
+      rankings: JSON.parse(localStorage.getItem('dad-joke-rankings')) || [],
+      uniquePages: new Set([1]),
+    };
     this.getJokes = this.getJokes.bind(this);
     this.changeRating = this.changeRating.bind(this);
   }
 
   async componentDidMount() {
+    if (this.state.rankings.length > 0) return;
     const jokes = await axios.get(BASE_URL + '?limit=10', {
       headers: { Accept: 'application/json' },
     });
@@ -27,6 +31,11 @@ class DadJokes extends Component {
         }),
       };
     });
+
+    localStorage.setItem(
+      'dad-joke-rankings',
+      JSON.stringify(this.state.rankings)
+    );
   }
 
   async getJokes() {
@@ -59,6 +68,11 @@ class DadJokes extends Component {
         };
       });
 
+      localStorage.setItem(
+        'dad-joke-rankings',
+        JSON.stringify(this.state.rankings)
+      );
+
       this.setState(sortList);
     } catch (err) {
       console.error(err);
@@ -87,11 +101,11 @@ class DadJokes extends Component {
       const emojiLink =
         rating >= 12
           ? emojis[0] //rofl
-          : rating >= 10
+          : rating >= 9
           ? emojis[1] //grin squint face
-          : rating >= 8
+          : rating >= 6
           ? emojis[2] //grin smile
-          : rating >= 4
+          : rating >= 3
           ? emojis[3] //slight smile
           : rating >= 0
           ? emojis[4] //confused
@@ -112,14 +126,19 @@ class DadJokes extends Component {
       <div className="Dad-jokes-app-container">
         <div className="Dad-jokes-scrolling">{dadJokes}</div>
         <div className="Dad-jokes-button-area">
-          <h1>Dad Jokes</h1>
+          <div className="Dad-jokes-title">
+            <h1>Dad</h1>
+            <h1>JOKES</h1>
+          </div>
+          <div className="Dad-jokes-circle-border"></div>
           <img
             className="Dad-jokes-button-area-emoji"
             src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/282/face-with-tears-of-joy_1f602.png"
             alt="joy-emoji"
           />
           <button className="Dad-jokes-button" onClick={this.getJokes}>
-            New Jokes!
+            New
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jokes!
           </button>
         </div>
       </div>
